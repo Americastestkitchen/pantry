@@ -45,7 +45,7 @@ export default function makeConfig(isDevelopment) {
     devtool: isDevelopment ? devtools : '',
     entry: {
       app: isDevelopment ? [
-        `webpack-hot-middleware/client?path=http://${serverIp}:${constants.HOT_RELOAD_PORT}/__webpack_hmr`,
+        `webpack-hot-middleware/client?path=http://${serverIp}:${constants.HOT_RELOAD_PORT}/__webpack_hmr`, // eslint-disable-line max-len
         path.join(constants.SRC_DIR, 'browser/main.js')
       ] : [
         path.join(constants.SRC_DIR, 'browser/main.js')
@@ -53,36 +53,28 @@ export default function makeConfig(isDevelopment) {
     },
     module: {
       loaders: [{
-        loader: 'url-loader?limit=100000',
-        test: /\.(gif|jpg|png|woff|woff2|eot|ttf|svg)$/
+        loader: 'url-loader?limit=10000',
+        test: /\.(gif|jpg|png|svg)$/
       }, {
-        exclude: /node_modules/,
+        loader: 'url-loader?limit=1',
+        test: /favicon\.ico$/
+      }, {
+        loader: 'url-loader?limit=100000',
+        test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9]+)?$/
+      }, {
+        test: /\.js$/,
+        exclude: constants.NODE_MODULES_DIR,
         loader: 'babel',
         query: {
-          stage: 0,
-          // If cacheDirectory is enabled, it throws:
-          // Uncaught Error: locals[0] does not appear to be a `module` object with Hot Module replacement API enabled.
-          // cacheDirectory: true,
+          cacheDirectory: true,
+          plugins: ['transform-runtime', 'add-module-exports'],
+          presets: ['es2015', 'react', 'stage-1'],
           env: {
             development: {
-              // react-transform belongs to webpack config only, not to .babelrc
-              plugins: ['react-transform'],
-              extra: {
-                'react-transform': {
-                  transforms: [{
-                    transform: 'react-transform-hmr',
-                    imports: ['react'],
-                    locals: ['module']
-                  }, {
-                    transform: 'react-transform-catch-errors',
-                    imports: ['react', 'redbox-react']
-                  }]
-                }
-              }
+              presets: ['react-hmre']
             }
           }
         },
-        test: /\.js$/
       }].concat(stylesLoaders())
     },
     output: isDevelopment ? {

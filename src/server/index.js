@@ -1,9 +1,11 @@
-require('babel/register')({optional: ['es7']});
+require('babel-register');
 
 const serverConfig = require('./config');
 
 if (!process.env.NODE_ENV)
+  /* eslint-disable max-len */
   throw new Error('Environment variable NODE_ENV isn\'t set. Remember it\'s up your production enviroment to set NODE_ENV and maybe other variables.');
+  /* eslint-disable max-len */
 
 /* http://formatjs.io/guides/runtime-environments/#polyfill-node */
 if (global.Intl) {
@@ -14,8 +16,7 @@ if (global.Intl) {
   require('intl');
   global.Intl.NumberFormat = global.IntlPolyfill.NumberFormat;
   global.Intl.DateTimeFormat = global.IntlPolyfill.DateTimeFormat;
-}
-else {
+} else {
   global.Intl = require('intl');
 }
 

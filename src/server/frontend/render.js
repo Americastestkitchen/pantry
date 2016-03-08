@@ -12,7 +12,7 @@ import useragent from 'useragent';
 import {HOT_RELOAD_PORT} from '../../../webpack/constants';
 import {IntlProvider} from 'react-intl';
 import {Provider} from 'react-redux';
-import {RoutingContext, match} from 'react-router';
+import {RouterContext, match} from 'react-router';
 import {createMemoryHistory} from 'history';
 
 export default function render(req, res, next) {
@@ -51,8 +51,7 @@ export default function render(req, res, next) {
       await fetchComponentDataAsync(store.dispatch, renderProps);
       const html = await renderPageAsync(store, renderProps, req);
       res.send(html);
-    }
-    catch (e) {
+    } catch (e) {
       next(e);
     }
   });
@@ -99,7 +98,7 @@ function getAppHtml(store, renderProps) {
   return ReactDOMServer.renderToString(
     <Provider store={store}>
       <IntlProvider>
-        <RoutingContext {...renderProps} />
+        <RouterContext {...renderProps} />
       </IntlProvider>
     </Provider>
   );
