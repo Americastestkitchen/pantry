@@ -6,8 +6,11 @@ import eslint from 'gulp-eslint';
 import gulp from 'gulp';
 import mochaRunCreator from './test/mochaRunCreator';
 import path from 'path';
+import postcss from 'gulp-postcss';
 import runSequence from 'run-sequence';
+import reporter from 'postcss-reporter';
 import shell from 'gulp-shell';
+import stylelint from 'stylelint';
 import webpackBuild from './webpack/build';
 import yargs from 'yargs';
 
@@ -63,6 +66,17 @@ gulp.task('eslint-ci', () => {
   return runEslint().pipe(eslint.failAfterError());
 });
 
+gulp.task('stylelint', () => {
+  return gulp.src(['src/**/*.scss', 'webpack/*.scss'])
+    .pipe(postcss([
+      stylelint({
+        configFile: path.join(__dirname, './.stylelintrc')
+      }),
+      reporter({clearMessages: true}),
+    ]));
+});
+
+
 gulp.task('mocha', () => {
   mochaRunCreator('process')();
 });
@@ -82,7 +96,7 @@ gulp.task('mocha-watch', () => {
 });
 
 gulp.task('test', done => {
-  runSequence('eslint-ci', 'mocha', 'build-webpack', done);
+  runSequence('stylelint', 'eslint-ci', 'mocha', 'build-webpack', done);
 });
 
 gulp.task('server-node', bg('node', './src/server'));

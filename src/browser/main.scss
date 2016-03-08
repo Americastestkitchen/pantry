@@ -1,7 +1,7 @@
-@import '~susy/sass/susy';
-@import '~breakpoint-sass/stylesheets/breakpoint';
-@import '~normalize.css/normalize.css';
-@import 'app/App.scss';
+@import "~susy/sass/susy";
+@import "~breakpoint-sass/stylesheets/breakpoint";
+@import "~normalize.css/normalize.css";
+@import "app/App.scss";
 
 $small: (320px 767px);
 $medium: (768px 1099px);
@@ -20,18 +20,20 @@ $susy: (
   )
 );
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
   color: #333;
-  font-family: 'Segoe UI', 'Lucida Grande','Ubuntu','sans-serif';
+  font-family: "Segoe UI", "Lucida Grande", "Ubuntu", "sans-serif";
   font-size: 16px;
   line-height: 1.5;
 }
 
 @include layout($susy);
+
 .content {
   @include container;
   margin-bottom: 3em;
@@ -47,14 +49,6 @@ body {
   padding: 1em 2em;
 }
 
-@include susy-breakpoint($large, 12) {
-
-}
-
-@include susy-breakpoint($medium, 12) {
-
-}
-
-@include susy-breakpoint($small, 4) {
-
-}
+@include susy-breakpoint($large, 12)
+  @include susy-breakpoint($medium, 12)
+  @include susy-breakpoint($small, 4)
