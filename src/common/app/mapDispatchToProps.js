@@ -1,5 +1,5 @@
-import {Map} from 'immutable';
-import {bindActionCreators} from 'redux';
+import { Map } from 'immutable';
+import { bindActionCreators } from 'redux';
 
 const actions = [
 ];

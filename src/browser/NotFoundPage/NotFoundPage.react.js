@@ -1,7 +1,7 @@
 import Component from 'react-pure-render/component';
 import Helmet from 'react-helmet';
-import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default class NotFoundPage extends Component {
 
@@ -10,7 +10,7 @@ export default class NotFoundPage extends Component {
   }
 
   render() {
-    const {msg: {NotFoundPage: msg}} = this.props;
+    const { msg: { NotFoundPage: msg } } = this.props;
 
     return (
       <div className="notfound-page">

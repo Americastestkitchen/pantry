@@ -1,13 +1,13 @@
 import config from '../config';
 
-export default function errorHandler(err, req, res, next) {
+export default function errorHandler(err, req, res) {
   const errorDetails = err.stack || err;
 
   console.error('Yay', errorDetails);
 
   res.status(500).format({
     json() {
-      const errorInfo = {error: err.toString()};
+      const errorInfo = { error: err.toString() };
       if (!config.isProduction) errorInfo.details = errorDetails;
 
       res.send(errorInfo);
@@ -29,4 +29,4 @@ export default function errorHandler(err, req, res, next) {
       res.send(`500 Internal server error:\n${message}`);
     }
   });
-};
+}
