@@ -119,7 +119,7 @@
     "shortid": "^2.2.4",
     "style-loader": "^0.13.0",
     "stylelint": "^4.4.0",
-    "stylelint-config-standard": "^3.0.0",
+    "stylelint-config-standard": "^4.0.0",
     "stylus-loader": "^1.0.0",
     "susy": "^2.2.12",
     "urijs": "^1.16.1",
