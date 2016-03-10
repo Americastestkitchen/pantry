@@ -7,33 +7,40 @@ import {
  } from '../../../../test/mochaTestHelper';
 
 describe('Header component', () => {
-  const msg = {
-    app: {
-      footer: {
-        madeByHtml: '<a href="#">footer link</a>',
-      },
-      links: {
-        home: 'Home',
-        todos: 'Todos'
+  function componentSetup() {
+    const msg = {
+      app: {
+        footer: {
+          madeByHtml: '<a href="#">footer link</a>',
+        },
+        links: {
+          home: 'Home',
+          todos: 'Todos'
+        }
       }
+    };
+
+    const componentProps = {
+      msg,
+      pathname: '/'
+    };
+
+    const headerComponent = TestUtils.renderIntoDocument(
+      <Header {...componentProps} />
+    );
+
+    return {
+      headerComponent
     }
   };
 
-  let headerComponent, headerEle;
-
-  function componentProps() {
-    return {
-      msg: msg,
-      pathname: '/'
-    };
-  };
-
-  beforeEach(() => {
-    headerComponent = TestUtils.renderIntoDocument(<Header {...componentProps()} />);
-    headerEle = TestUtils.findRenderedDOMComponentWithTag(headerComponent, 'h1');
-  });
 
   it('should have one h1 element', () => {
-    expect(headerEle).toExist;
+    const {headerComponent} = componentSetup();
+    const headerEle = TestUtils.findRenderedDOMComponentWithTag(
+      headerComponent,
+      'h1'
+    );
+    expect(headerEle).toExist();
   });
 });

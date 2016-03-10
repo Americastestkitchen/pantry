@@ -1,9 +1,6 @@
 export default function createFetch(React, Component) {
-
   return function fetch(...actions) {
-
     return Wrapped => class Fetch extends Component {
-
       static propTypes = {
         dispatch: React.PropTypes.func,
         location: React.PropTypes.object,
@@ -20,19 +17,16 @@ export default function createFetch(React, Component) {
         /* Dispatch is injected by react-redux.
            React router injects location and params for every routed component.
         */
-        const {dispatch, location, params} = this.props;
+        const { dispatch, location, params } = this.props;
 
         actions.forEach(action =>
-          dispatch(action({location, params}))
+          dispatch(action({ location, params }))
         );
       }
       /* check out the actions and reducer for more info on what is being dispatched */
       render() {
         return <Wrapped {...this.props} />;
       }
-
     };
-
   };
-
 }

@@ -4,6 +4,7 @@ import bg from 'gulp-bg';
 import del from 'del';
 import eslint from 'gulp-eslint';
 import gulp from 'gulp';
+import gulpIf from 'gulp-if';
 import mochaRunCreator from './test/mochaRunCreator';
 import path from 'path';
 import postcss from 'gulp-postcss';
@@ -18,16 +19,22 @@ const args = yargs
   .alias('p', 'production')
   .argv;
 
-const runEslint = () => {
+function isFixed(file) {
+  // Has ESLint fixed the file contents?
+  return file.eslint && file.eslint.fixed;
+}
+
+function runEslint() {
   return gulp.src([
     'gulpfile.babel.js',
     'src/**/*.js',
     'webpack/*.js'
   ])
-
-  .pipe(eslint())
+  .pipe(eslint({
+    fix: true
+  }))
   .pipe(eslint.format());
-};
+}
 
 function buildReact(minify) {
   gulp
@@ -42,10 +49,15 @@ function buildSass() {
   gulp.src('lib/**/*.scss').pipe(gulp.dest('dist'));
 }
 
-gulp.task('dist', function() {
-  del(['dist/*']);
-  buildReact(true);
-  buildSass();
+
+gulp.task('lint-fix-src', () => {
+  return gulp.src('src/**/*.js')
+    .pipe(eslint({
+      fix: true
+    }))
+    .pipe(eslint.format())
+    // if fixed, write the file to dest
+    .pipe(gulpIf(isFixed, gulp.dest('src/')));
 });
 
 gulp.task('env', () => {
@@ -66,16 +78,17 @@ gulp.task('eslint-ci', () => {
   return runEslint().pipe(eslint.failAfterError());
 });
 
-gulp.task('stylelint', () => {
+function styleLint() {
   return gulp.src(['src/**/*.scss', 'webpack/*.scss'])
-    .pipe(postcss([
-      stylelint({
-        configFile: path.join(__dirname, './.stylelintrc')
-      }),
-      reporter({clearMessages: true}),
-    ]));
-});
+    .pipe(postcss(
+      [
+        stylelint({ configFile: path.join(__dirname, './.stylelintrc') }),
+        reporter({ clearMessages: true })
+      ]
+    ));
+}
 
+gulp.task('stylelint', styleLint);
 
 gulp.task('mocha', () => {
   mochaRunCreator('process')();
@@ -84,7 +97,33 @@ gulp.task('mocha', () => {
 /* Enable to run single test file */
 /* ex. gulp mocha-file --file src/browser/components/__test__/Button.js */
 gulp.task('mocha-file', () => {
-  mochaRunCreator('process')({path: path.join(__dirname, args['file'])});
+  mochaRunCreator('process')({ path: path.join(__dirname, args.file) });
+});
+
+/* Run a test on a shared component */
+/* ex. gulp test-shared-component -c Gallery */
+gulp.task('test-shared-component', () => {
+  mochaRunCreator('process')({
+    path: path.join(
+      __dirname,
+      'src/browser/components/shared/',
+      args.c,
+      '__test__',
+      `${args.c}.spec.js`
+    )
+  });
+});
+
+gulp.task('test-component', () => {
+  mochaRunCreator('process')({
+    path: path.join(
+      __dirname,
+      'src/browser/components/',
+      args.c,
+      '__test__',
+      `${args.c}.spec.js`
+    )
+  });
 });
 
 /* Continuous test running */
@@ -107,10 +146,11 @@ gulp.task('server-nodemon', shell.task(
 ));
 
 gulp.task('server', ['env'], done => {
-  if (args.production)
+  if (args.production) {
     runSequence('clean', 'build', 'server-node', done);
-  else
+  } else {
     runSequence('server-hot', 'server-nodemon', done);
+  }
 });
 
 gulp.task('default', ['server']);

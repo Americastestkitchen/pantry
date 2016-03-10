@@ -2,10 +2,9 @@ import App from './app/App.react';
 import HomePage from './HomePage/HomePage.react';
 import NotFoundPage from './NotFoundPage/NotFoundPage.react';
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
+import { IndexRoute, Route } from 'react-router';
 
-export default function createRoutes(getState) {
-
+export default function createRoutes() {
   return (
     <Route component={App} path="/">
       <IndexRoute component={HomePage} />
@@ -13,5 +12,4 @@ export default function createRoutes(getState) {
       <Route component={HomePage} path="*" />
     </Route>
   );
-
 }

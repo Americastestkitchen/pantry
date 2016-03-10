@@ -2,12 +2,12 @@ import config from '../config';
 import fs from '../lib/fs';
 import path from 'path';
 
-const DEFAULT = {js: 'app.js', css: 'app.css'};
+const DEFAULT = { js: 'app.js', css: 'app.css' };
 
 const APP_JS_PATTERN = /^app\-\w+\.js$/;
 const APP_CSS_PATTERN = /^app\-\w+\.css$/;
 
-export default async function getAppAssetFilenamesAsync() { // eslint-disable-line space-before-function-paren
+export default async function getAppAssetFilenamesAsync() {
   if (!config.isProduction) return DEFAULT;
 
   try {
