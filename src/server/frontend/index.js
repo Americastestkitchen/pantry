@@ -2,7 +2,6 @@ import compression from 'compression';
 import device from 'express-device';
 import esteMiddleware from '../lib/esteMiddleware';
 import express from 'express';
-// import favicon from 'serve-favicon';
 import render from './render';
 
 const app = express();

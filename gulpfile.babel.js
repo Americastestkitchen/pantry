@@ -1,5 +1,4 @@
 /* eslint-disable no-undef, no-console */
-import babel from 'gulp-babel';
 import bg from 'gulp-bg';
 import del from 'del';
 import eslint from 'gulp-eslint';
@@ -35,20 +34,6 @@ function runEslint() {
   }))
   .pipe(eslint.format());
 }
-
-function buildReact(minify) {
-  gulp
-    .src(['lib/**/*.react.js', 'lib/**/index.js'])
-    .pipe(babel())
-    // .pipe(uglify())
-    .pipe(gulp.dest('dist'));
-}
-
-function buildSass() {
-  //Copy files and directory structure from /scss to /dist
-  gulp.src('lib/**/*.scss').pipe(gulp.dest('dist'));
-}
-
 
 gulp.task('lint-fix-src', () => {
   return gulp.src('src/**/*.js')

@@ -1,6 +1,5 @@
 import appReducer from './app/reducer';
 import createLogger from 'redux-logger';
-import fetch from './fetch';
 import injectDependencies from './lib/injectDependencies';
 import promiseMiddleware from 'redux-promise-middleware';
 import shortid from 'shortid';
@@ -17,7 +16,7 @@ export default function configureStore({deps, initialState}) {
   const getUid = () => shortid.generate();
   const now = () => Date.now();
   const dependenciesMiddleware = injectDependencies(
-    { ...deps, fetch, getUid, now },
+    { ...deps, getUid, now },
     { validate }
   );
 

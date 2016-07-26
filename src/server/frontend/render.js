@@ -1,4 +1,3 @@
-import Helmet from 'react-helmet';
 import Html from './Html.react';
 import Promise from 'bluebird';
 import React from 'react';
@@ -37,7 +36,7 @@ async function fetchComponentDataAsync(dispatch, {components, location, params})
 function getAppHtml(store, renderProps) {
   return ReactDOMServer.renderToString(
     <Provider store={store}>
-      <IntlProvider>
+      <IntlProvider locale="en">
         <RouterContext {...renderProps} />
       </IntlProvider>
     </Provider>
@@ -86,29 +85,20 @@ async function renderPageAsync(store, renderProps, req) {
   const clientState = store.getState();
   const { headers, hostname } = req;
   const appHtml = getAppHtml(store, renderProps);
-  const helmet = Helmet.rewind();
-  const { js: appJsFilename, css: appCssFilename } = await getAppAssetFilenamesCachedAsync();
+  const { js: appJsFilename } = await getAppAssetFilenamesCachedAsync();
   const scriptHtml = getScriptHtml(clientState, headers, hostname, appJsFilename);
 
   /* eslint-disable */
   return '<!DOCTYPE html>' + ReactDOMServer.renderToStaticMarkup(
     <Html
-      appCssFilename={appCssFilename}
       bodyHtml={`<div id="app">${appHtml}</div>${scriptHtml}`}
-      googleAnalyticsId={config.googleAnalyticsId}
-      helmet={helmet}
-      isProduction={config.isProduction}
     />
   );
   /* eslint-enable */
 }
 
 export default function render(req, res, next) {
-  const initialState = {
-    device: {
-      isMobile: ['phone', 'tablet'].indexOf(req.device.type) > -1
-    }
-  };
+  const initialState = {};
   const store = configureStore({ initialState });
 
   // Fetch logged in user here because routes may need it. Remember we can use
