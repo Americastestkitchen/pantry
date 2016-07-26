@@ -1,25 +1,23 @@
 import appReducer from './app/reducer';
 import createLogger from 'redux-logger';
-import fetch from './fetch';
 import injectDependencies from './lib/injectDependencies';
 import promiseMiddleware from 'redux-promise-middleware';
 import shortid from 'shortid';
 import validate from './validate';
-import {applyMiddleware, compose, createStore} from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 
 const BROWSER_DEVELOPMENT = (
   process.env.NODE_ENV !== 'production' && // eslint-disable-line no-undef
   process.env.IS_BROWSER // eslint-disable-line no-undef
 );
 
-export default function configureStore({deps, engine, initialState}) {
-
+export default function configureStore({deps, initialState}) {
   // Inject services for actions.
   const getUid = () => shortid.generate();
   const now = () => Date.now();
   const dependenciesMiddleware = injectDependencies(
-    {...deps, fetch, getUid, now},
-    {validate}
+    { ...deps, getUid, now },
+    { validate }
   );
 
   const middleware = [
@@ -39,8 +37,10 @@ export default function configureStore({deps, engine, initialState}) {
     middleware.push(logger);
   }
 
-  const createReduxStore = (BROWSER_DEVELOPMENT && window.devToolsExtension) // eslint-disable-line no-undef
-    ? compose(applyMiddleware(...middleware), window.devToolsExtension()) // eslint-disable-line no-undef
+  const createReduxStore = (BROWSER_DEVELOPMENT && window.devToolsExtension)
+    ? compose(
+      applyMiddleware(...middleware),
+      window.devToolsExtension()) // eslint-disable-line no-undef
     : applyMiddleware(...middleware);
 
   const store = createReduxStore(createStore)(appReducer, initialState);

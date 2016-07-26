@@ -1,4 +1,4 @@
-import {promisifyAll} from 'bluebird';
+import { promisifyAll } from 'bluebird';
 
 const fs = promisifyAll(require('fs'));
 

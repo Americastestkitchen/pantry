@@ -1,5 +1,5 @@
 import Component from 'react-pure-render/component';
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
 export default class GlobalFooter extends Component {
 
@@ -8,7 +8,7 @@ export default class GlobalFooter extends Component {
   }
 
   render() {
-    const {msg} = this.props;
+    const { msg } = this.props;
 
     return (
       <footer>
