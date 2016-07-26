@@ -1,0 +1,32 @@
+@import "~breakpoint-sass/stylesheets/breakpoint";
+@import "~normalize.css/normalize.css";
+@import "app/App.scss";
+
+$small: (320px 767px);
+$medium: (768px 1099px);
+$large: 1100px;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: #333;
+  font-family: "Segoe UI", "Lucida Grande", "Ubuntu", "sans-serif";
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.content {
+  margin-bottom: 3em;
+
+  header {
+    border-bottom: 1px solid darkgray;
+  }
+}
+
+.component-summary {
+  border: 1px solid lightgray;
+  padding: 1em 2em;
+}

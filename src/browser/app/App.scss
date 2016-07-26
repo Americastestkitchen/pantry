@@ -1,5 +1,0 @@
-@import "../../../lib/Button/Button";
-
-button {
-  @include pantry-button($backgroundColor: red, $textColor: white);
-}

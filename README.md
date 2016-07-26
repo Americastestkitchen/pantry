@@ -2,6 +2,37 @@
 
 `@atk/pantry` is a Pattern Library for re-usable React components at America's Test Kitchen.
 
+## Setting up pantry
+
+pantry depends on node version 6.3.0. If you aren't using node 6.3.0, you will need to install it.
+You can use a node version manager such as [nvm](https://github.com/creationix/nvm) to install node 6.3.0
+if you dont' have it.
+
+```
+$ git clone git@github.com:Americastestkitchen/pantry.git
+$ npm install
+```
+
+## Running the app
+
+There is a basic site available within pantry that exposes the components available in the project.
+The code for the app lives in the `app` folder at the root of the project.
+
+To run the server:
+```
+$ gulp
+```
+
+There are also tests available for all components included in pantry.
+
+To run the tests:
+```
+$ gulp test
+```
+
+The home page is a list of components in pantry. Each component has a route associated with it that will render that component.
+The route for GlobalHeader would be /global_header.
+
 ## Using components in your project
 
 #### Javascript
@@ -69,14 +100,16 @@ $ git checkout -b jd-ATK-123
 #  -- React component
 #  -- SCSS file
 #  -- Tests
-$ mkdir lib/PageTitle
-$ mkdir lib/__test__
-$ touch lib/PageTitle/__test__/PageTitle.spec.js
-$ touch lib/PageTitle/PageTitle.react.js
-$ touch lib/PageTitle/PageTitle.scss
+$ mkdir src/PageTitle
+$ mkdir src/PageTitle/__test__
+$ touch src/PageTitle/__test__/PageTitle.spec.js
+$ touch src/PageTitle/PageTitle.react.js
+$ touch src/PageTitle/PageTitle.scss
 
-# Add an export directive to `index.js`
+# Add an export directive to `src/index.js`
 exports.PageTitle = import PageTitle from './components/PageTitle';
+
+# Add a link for the component to the Home Page and add a route for the component.
 
 # 5) Update the minor release version in ./package.json (was previously 1.0.0 in this example)
 {
