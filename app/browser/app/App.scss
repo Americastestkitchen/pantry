@@ -1,0 +1,21 @@
+@import "../../../src/Button/Button";
+
+main {
+  margin: 0 auto;
+  max-width: 1200px;
+
+  a {
+    color: #d73a15;
+    font-size: 20px;
+  }
+}
+
+.app__header {
+  border-bottom: 1px solid black;
+
+  a {
+    color: black;
+    font-size: 32px;
+    text-decoration: none;
+  }
+}

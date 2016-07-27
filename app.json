@@ -1,7 +1,5 @@
 {
-  "name": "jumper_cables",
-  "description": "a starter kit for cool apps - built using https://github.com/este/este",
-  "repository": "",
-  "logo": ",
-  "keywords": [""]
+  "name": "pantry",
+  "description": "Component library for America's Test Kitchen",
+  "repository": "https://github.com/Americastestkitchen/pantry"
 }

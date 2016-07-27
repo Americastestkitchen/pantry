@@ -11,7 +11,7 @@ function reportError(errorReporter) {
 
 export default function mochaRunCreator(errorReporter = 'process') {
   return (file) => {
-    let source = 'src/**/__test__/**/*.js';
+    let source = 'app/**/__test__/**/*.js';
 
     if (file) {
       // Do not run tests when changed something not JS

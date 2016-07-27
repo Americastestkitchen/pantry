@@ -13,17 +13,16 @@ const devtools = process.env.CONTINUOUS_INTEGRATION
   : 'cheap-module-eval-source-map';
 
 const loaders = {
-  'css': '',
-  'less': '!less-loader',
-  'scss': '!sass-loader',
-  'sass': '!sass-loader?indentedSyntax',
-  'styl': '!stylus-loader'
+  css: '',
+  less: '!less-loader',
+  scss: '!sass-loader',
+  sass: '!sass-loader?indentedSyntax',
+  styl: '!stylus-loader'
 };
 
 const serverIp = ip.address();
 
 export default function makeConfig(isDevelopment) {
-
   function stylesLoaders() {
     return Object.keys(loaders).map(ext => {
       const prefix = 'css-loader!postcss-loader';
@@ -32,7 +31,7 @@ export default function makeConfig(isDevelopment) {
         ? `style-loader!${extLoaders}`
         : ExtractTextPlugin.extract('style-loader', extLoaders);
       return {
-        loader: loader,
+        loader,
         test: new RegExp(`\\.(${ext})$`)
       };
     });
@@ -46,9 +45,9 @@ export default function makeConfig(isDevelopment) {
     entry: {
       app: isDevelopment ? [
         `webpack-hot-middleware/client?path=http://${serverIp}:${constants.HOT_RELOAD_PORT}/__webpack_hmr`, // eslint-disable-line max-len
-        path.join(constants.SRC_DIR, 'browser/main.js')
+        path.join(constants.APP_DIR, 'browser/main.js')
       ] : [
-        path.join(constants.SRC_DIR, 'browser/main.js')
+        path.join(constants.APP_DIR, 'browser/main.js')
       ]
     },
     module: {
@@ -96,39 +95,41 @@ export default function makeConfig(isDevelopment) {
           }
         })
       ];
-      if (isDevelopment) plugins.push(
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-      );
-      else plugins.push(
-        // Render styles into separate cacheable file to prevent FOUC and
-        // optimize for critical rendering path.
-        new ExtractTextPlugin('app-[hash].css', {
-          allChunks: true
-        }),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            screw_ie8: true, // eslint-disable-line camelcase
-            warnings: false // Because uglify reports irrelevant warnings.
-          }
-        })
-      );
+      if (isDevelopment) {
+        plugins.push(
+          new webpack.optimize.OccurenceOrderPlugin(),
+          new webpack.HotModuleReplacementPlugin(),
+          new webpack.NoErrorsPlugin()
+        );
+      } else {
+       plugins.push(
+         // Render styles into separate cacheable file to prevent FOUC and
+         // optimize for critical rendering path.
+         new ExtractTextPlugin('app-[hash].css', {
+           allChunks: true
+         }),
+         new webpack.optimize.DedupePlugin(),
+         new webpack.optimize.OccurenceOrderPlugin(),
+         new webpack.optimize.UglifyJsPlugin({
+           compress: {
+             screw_ie8: true, // eslint-disable-line camelcase
+             warnings: false // Because uglify reports irrelevant warnings.
+           }
+         })
+       );
+      }
       return plugins;
     })(),
     postcss: () => [autoprefixer({browsers: 'last 2 version'})],
     resolve: {
       extensions: ['', '.js', '.json'],
-      modulesDirectories: ['src', 'node_modules'],
+      modulesDirectories: ['app', 'node_modules'],
       root: constants.ABSOLUTE_BASE,
       alias: {
-        'react$': require.resolve(path.join(constants.NODE_MODULES_DIR, 'react'))
+        react$: require.resolve(path.join(constants.NODE_MODULES_DIR, 'react'))
       }
     }
   };
 
   return config;
-
 };
