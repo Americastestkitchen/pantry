@@ -45,9 +45,9 @@ export default function makeConfig(isDevelopment) {
     entry: {
       app: isDevelopment ? [
         `webpack-hot-middleware/client?path=http://${serverIp}:${constants.HOT_RELOAD_PORT}/__webpack_hmr`, // eslint-disable-line max-len
-        path.join(constants.SRC_DIR, 'browser/main.js')
+        path.join(constants.APP_DIR, 'browser/main.js')
       ] : [
-        path.join(constants.SRC_DIR, 'browser/main.js')
+        path.join(constants.APP_DIR, 'browser/main.js')
       ]
     },
     module: {
@@ -123,7 +123,7 @@ export default function makeConfig(isDevelopment) {
     postcss: () => [autoprefixer({browsers: 'last 2 version'})],
     resolve: {
       extensions: ['', '.js', '.json'],
-      modulesDirectories: ['src', 'node_modules'],
+      modulesDirectories: ['app', 'node_modules'],
       root: constants.ABSOLUTE_BASE,
       alias: {
         react$: require.resolve(path.join(constants.NODE_MODULES_DIR, 'react'))
