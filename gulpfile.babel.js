@@ -1,4 +1,5 @@
 /* eslint-disable no-undef, no-console */
+import babel from 'gulp-babel';
 import bg from 'gulp-bg';
 import del from 'del';
 import eslint from 'gulp-eslint';
@@ -48,6 +49,12 @@ function buildSass() {
   gulp.src('src/**/*.scss').pipe(gulp.dest('dist'));
 }
 /* eslint-enable */
+
+gulp.task('dist', () => {
+  del(['dist/*']);
+  buildReact(true);
+  buildSass();
+});
 
 gulp.task('lint-fix-src', () => {
   return gulp.src('app/**/*.js')
