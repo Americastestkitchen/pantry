@@ -2,15 +2,15 @@
   background-color: $backgroundColor;
   border: 1px solid gray;
   color: $textColor;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   text-decoration: none;
   border-radius: 3px;
 
   &:hover {
-    background:darken($backgroundColor,8%);
+    background:darken($backgroundColor, 8%);
     transition: all 0.3s ease;
   }
   &:active {
-    background:darken($backgroundColor,25%);
+    background:darken($backgroundColor, 25%);
   }
 }
