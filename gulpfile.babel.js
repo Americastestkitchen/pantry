@@ -1,4 +1,5 @@
 /* eslint-disable no-undef, no-console */
+import babel from 'gulp-babel';
 import bg from 'gulp-bg';
 import del from 'del';
 import eslint from 'gulp-eslint';
@@ -26,7 +27,7 @@ function isFixed(file) {
 function runEslint() {
   return gulp.src([
     'gulpfile.babel.js',
-    'app/**/*.js',
+    'src/**/*.js',
     'webpack/*.js'
   ])
   .pipe(eslint({
@@ -49,14 +50,20 @@ function buildSass() {
 }
 /* eslint-enable */
 
+gulp.task('dist', () => {
+  del(['dist/*']);
+  buildReact(true);
+  buildSass();
+});
+
 gulp.task('lint-fix-src', () => {
-  return gulp.src('app/**/*.js')
+  return gulp.src('src/**/*.js')
     .pipe(eslint({
       fix: true
     }))
     .pipe(eslint.format())
     // if fixed, write the file to dest
-    .pipe(gulpIf(isFixed, gulp.dest('app/')));
+    .pipe(gulpIf(isFixed, gulp.dest('src/')));
 });
 
 gulp.task('env', () => {
@@ -78,7 +85,7 @@ gulp.task('eslint-ci', () => {
 });
 
 function styleLint() {
-  return gulp.src(['app/**/*.scss', 'webpack/*.scss'])
+  return gulp.src(['src/**/*.scss', 'webpack/*.scss'])
     .pipe(postcss(
       [
         stylelint({ configFile: path.join(__dirname, './.stylelintrc') }),
