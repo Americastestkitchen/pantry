@@ -19,12 +19,12 @@ describe('Button component', () => {
 
   it('should exist', () => {
     const {buttonComponent} = componentSetup();
-    expect(buttonComponent).toExist;
+    expect(buttonComponent).toExist();
   });
 
   it('should render a button with appropriate text', () => {
     const {buttonComponent} = componentSetup();
-    let button = TestUtils.findRenderedDOMComponentWithClass(
+    const button = TestUtils.findRenderedDOMComponentWithClass(
       buttonComponent,
       'button__button'
     );

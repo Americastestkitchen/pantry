@@ -11,7 +11,7 @@ export default class Button extends Component {
   render() {
     const { onClick, text } = this.props;
 
-    const buttonText = text ? text : 'Button';
+    const buttonText = text || 'Button';
 
     return (
       <div className="button">

@@ -5,7 +5,7 @@
     "Tom Tornese",
     "Jason Aslakson"
   ],
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Component library for America's Test Kitchen",
   "main": "./dist/index.js",
   "license": "SEE LICENSE IN LICENSE",
@@ -15,6 +15,9 @@
   "engines": {
     "node": "6.3.0"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "autoprefixer": "^6.1.0",
     "babel": "^6.5.2",
