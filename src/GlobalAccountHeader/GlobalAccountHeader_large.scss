@@ -1,0 +1,25 @@
+@include breakpoint($bp-large) {
+  .global-header-account__link {
+    color: $white;
+    &.active {
+      color: $white;
+    }
+  }
+
+  .global-header-account__link.favorites {
+    display: flex;
+    max-height: 3.5rem;
+    padding-right: 1rem;
+    margin-left: 2.5rem;
+
+    svg {
+      margin-left: -2.5rem;
+      position: absolute;
+    }
+  }
+
+  /* hide this button when at the largest screen size */
+  .global-header-account__link.button.tomato.global-header-account--register-cta {
+    display: none;
+  }
+}

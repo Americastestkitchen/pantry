@@ -1,5 +1,6 @@
 import '../main.scss';
 import Component from 'react-pure-render/component';
+import GlobalBrandsHeader from '../../../src/GlobalBrandsHeader/GlobalBrandsHeader.react';
 import mapDispatchToProps from '../../common/app/mapDispatchToProps';
 import mapStateToProps from '../../common/app/mapStateToProps';
 import React, { PropTypes } from 'react';
@@ -16,11 +17,20 @@ class App extends Component {
 
   render() {
     const { location: { pathname } } = this.props;
+    const user = {
+      cta: 'upgrade',
+      first_name: 'Tom',
+      memberships_cancelled: []
+    }
+
     return (
       <main
         className="content app"
         data-pathname={pathname}
       >
+        <GlobalBrandsHeader
+          user={user}
+        />
         <h1 className="app__header">
           <Link to="/">
             America's Test Kitchen - Pantry

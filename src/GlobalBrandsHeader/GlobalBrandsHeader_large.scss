@@ -1,0 +1,79 @@
+@include breakpoint($bp-large) {
+  .global-header-brands {
+    background-color: $licorice;
+    display: flex;
+    height: 3.5rem;
+    justify-content: space-between;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 3;
+
+    a {
+      line-height: 3.5rem;
+    }
+
+    > div {
+      align-items: center;
+      display: flex;
+    }
+
+    .button {
+      font-size: $font-size-small;
+      padding: 0.25rem 1.5rem;
+    }
+
+    a {
+      font-size: $font-size-small;
+    }
+  }
+
+  .global-header-brands__atk {
+    padding-left: 0;
+    position: relative;
+
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+  }
+
+  .global-header-brands__atk,
+  .global-header-brands__brand {
+    padding-left: 1.25rem;
+
+    &:hover {
+      svg {
+        path {
+          fill: $white;
+        }
+      }
+    }
+
+    svg {
+      vertical-align: middle;
+
+      path {
+        transition: fill 0.2s linear;
+      }
+    }
+  }
+
+  .atk-brand-border {
+    @include horizontal-align-middle;
+    background-color: $tomato;
+    height: 0.3rem;
+    position: absolute;
+    top: 0;
+    width: 4rem;
+  }
+
+
+  .global-header-account {
+    display: flex;
+  }
+
+  .global-header-account__link {
+    color: $white;
+  }
+}

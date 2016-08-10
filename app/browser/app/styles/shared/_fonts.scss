@@ -1,0 +1,29 @@
+/* stylelint-disable */
+@font-face {
+  font-family: 'montserratsemi_bold';
+  src: url('https://everest-production.s3.amazonaws.com/fonts/montserrat-semibold-webfont.woff2') format('woff2'),
+       url('https://everest-production.s3.amazonaws.com/fonts/montserrat-semibold-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'montserratlight';
+  src: url('https://everest-production.s3.amazonaws.com/fonts/montserrat-light-webfont.woff2') format('woff2'),
+       url('https://everest-production.s3.amazonaws.com/fonts/montserrat-light-webfont.woff') format('woff');
+}
+/* stylelint-enable */
+
+$montserratFamily: 'Montserrat', sans-serif;
+$montserratLightFamily: 'montserratlight', sans-serif;
+$montserratSemiBoldFamily: 'montserratsemi_bold', sans-serif;
+$merriweatherFamily: 'Merriweather', serif;
+
+$merriweatherBold: bold $font-size-base $merriweatherFamily;
+$merriweatherBoldItalic: italic bold $font-size-base $merriweatherFamily;
+$merriweatherLight: 300 $font-size-base $merriweatherFamily;
+$merriweatherLightItalic: italic 300 $font-size-base $merriweatherFamily;
+$merriweatherRegular: 400 $font-size-base $merriweatherFamily;
+$merriweatherItalic: italic 400 $font-size-base $merriweatherFamily;
+$montserratRegular: $font-size-base $montserratFamily;
+$montserratLight: "montserratlight";
+$montserratSemiBold: "montserratsemi_bold";
+$montserratBold: 700 $font-size-base $montserratFamily;

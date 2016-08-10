@@ -1,0 +1,41 @@
+.global-header-account {
+  align-items: center;
+  display: none;
+  white-space: nowrap;
+
+  a {
+    font-family: $montserratSemiBoldFamily;
+    font-size: 1.2rem;
+    white-space: nowrap;
+
+    @include ms-ie-10-11-only {
+      font-family: $montserratFamily;
+    }
+
+    @include ms-edge-only {
+      font-family: $montserratFamily;
+    }
+  }
+
+  .header-email-capture__header {
+    letter-spacing: 0.09rem;
+  }
+}
+
+.global-header-account__link {
+  font-family: $montserratFamily;
+  font-size: $font-size-small;
+  padding-right: 2rem;
+
+  &.button {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    padding: 0.2rem 1rem;
+    vertical-align: middle;
+  }
+
+  &.active,
+  &:hover {
+    color: $tomato;
+  }
+}

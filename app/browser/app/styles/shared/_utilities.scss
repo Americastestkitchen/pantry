@@ -1,0 +1,33 @@
+.small {
+  font-size: $font-size-small;
+}
+
+.mini {
+  font-size: $font-size-mini;
+}
+
+.micro {
+  font-size: $font-size-micro;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-tomato {
+  color: $tomato;
+}
+
+.text-white {
+  color: $white;
+}
+
+hr.dash {
+  border-width: 0.5rem;
+  margin: 2rem auto;
+  width: 25%;
+
+  @include breakpoint($bp-medium) {
+    margin: 4rem auto;
+  }
+}

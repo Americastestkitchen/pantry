@@ -45,7 +45,7 @@ export default class LinkBase extends Component {
     } = this.props;
 
     let finalHref = href;
-    if (trackingCodeParameter && deviceType) {
+    if (trackingCodeParameter && deviceType && queryParamTrackingCodes) {
       const multiSiteCodeParameters = ['renewal_header_cta', 'upgrade_header_cta'];
       const mulitSiteCheck = multiSiteCodeParameters.includes(trackingCodeParameter);
       const params = queryParamTrackingCodes(trackingCodeParameter, deviceType, mulitSiteCheck);
