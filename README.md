@@ -4,8 +4,8 @@
 
 ## Setting up pantry
 
-pantry depends on node version 6.3.0. If you aren't using node 6.3.0, you will need to install it.
-You can use a node version manager such as [nvm](https://github.com/creationix/nvm) to install node 6.3.0
+pantry depends on node version 8.7.0. If you aren't using node 8.7.0, you will need to install it.
+You can use a node version manager such as [nvm](https://github.com/creationix/nvm) to install node 8.7.0
 if you dont' have it.
 
 ```
