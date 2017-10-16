@@ -5,7 +5,7 @@
     "Tom Tornese",
     "Jason Aslakson"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Component library for America's Test Kitchen",
   "main": "./dist/index.js",
   "license": "SEE LICENSE IN LICENSE",
@@ -13,7 +13,7 @@
     "test": "gulp test"
   },
   "engines": {
-    "node": "6.3.0"
+    "node": "8.7.0"
   },
   "files": [
     "dist"
