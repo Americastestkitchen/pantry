@@ -1,0 +1,86 @@
+@include breakpoint($bp-large) {
+  .global-header-brands {
+    .toggle-nav {
+      &.basic {
+        margin-right: 1.5rem;
+
+        .toggle-nav__header-wrapper {
+          max-height: 3.5rem;
+          background-color: $licorice;
+
+          svg {
+            g {
+              stroke: $white;
+            }
+          }
+        }
+
+        .toggle-nav__header {
+          @include truncate;
+          color: $white;
+          display: block;
+          font: $font-size-small $montserratSemiBoldFamily;
+          line-height: 3.5rem;
+          text-transform: none;
+          max-width: 15em;
+          min-width: 5em;
+
+          &:hover {
+            color: $white;
+          }
+
+          @include ms-ie-10-11-only {
+            font-family: $montserratFamily;
+          }
+
+          @include ms-edge-only {
+            font-family: $montserratFamily;
+          }
+        }
+
+        &.active {
+          .toggle-nav__header-wrapper {
+            background-color: $white;
+
+            svg {
+              path {
+                stroke: $licorice;
+              }
+            }
+          }
+
+          .toggle-nav__list {
+            border: none;
+            text-align: center;
+            text-transform: uppercase;
+            max-width: initial;
+            width: 15rem;
+            a {
+              border-top: 0.1rem solid $steel;
+              border-bottom: 0;
+
+              &:hover {
+                background-color: $steel;
+              }
+            }
+          }
+          a {
+            background-color: $white;
+            color: $licorice;
+            &:hover {
+              color: $licorice;
+            }
+          }
+        }
+      }
+    }
+
+    .toggle-nav.active .toggle-nav__header::after {
+      top: 2rem;
+    }
+
+    .favorites svg {
+      top: -0.5rem;
+    }
+  }
+}

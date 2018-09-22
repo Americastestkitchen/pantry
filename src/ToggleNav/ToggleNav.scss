@@ -1,0 +1,154 @@
+@mixin toggle-nav(
+    $headerColor: black,
+    $headerActiveColor: white,
+    $headerBackground: white,
+    $headerActiveBackground: black,
+    $linkColor: white,
+    $linkHoverColor: white,
+    $listItemBackground: black,
+    $listItemActiveIndicator: red,
+    $listItemHoverIndicator: gray
+  ) {
+
+  font: $montserratRegular;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  position: relative;
+  z-index: 4;
+
+  &.active {
+    .toggle-nav__header-wrapper {
+      svg {
+        transform: rotateY(180deg);
+      }
+    }
+
+    .toggle-nav__list {
+      border: 0.1rem solid gray;
+      border-bottom: none;
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      z-index: 4;
+    }
+
+    .toggle-nav__header-wrapper {
+      background-color: black;
+    }
+
+    .toggle-nav__header {
+      color: $headerActiveColor;
+    }
+  }
+
+  &.basic {
+    margin: 0;
+    min-width: initial;
+
+    .toggle-nav__header {
+      background-color: transparent;
+      border: none;
+      color: inherit;
+      letter-spacing: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    .toggle-nav__list a {
+      border-left: 0;
+
+      &.active,
+      &:hover {
+        border-left: 0;
+      }
+    }
+  }
+
+  .toggle-nav__header-wrapper {
+    align-items: center;
+    background-color: $headerBackground;
+    cursor: pointer;
+    display: flex;
+    padding: 0 1.5rem;
+
+    &:hover {
+      background-color: black;
+
+      svg {
+        g {
+          stroke: white;
+        }
+      }
+    }
+
+    svg {
+      transform: rotate(180deg);
+      transition: all 0.2s linear;
+    }
+  }
+
+  .toggle-nav__header {
+    border-bottom: 0.3rem solid black;
+    color: $headerColor;
+    display: block;
+    font-size: $font-size-medium;
+    letter-spacing: 1.1px;
+    line-height: 4.4rem;
+    padding-right: 1rem;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+
+  .toggle-nav__list {
+    background-color: $listItemBackground;
+    display: none;
+    font-size: $font-size-medium;
+    list-style: none;
+    max-width: 100%;
+    text-align: left;
+
+    a {
+      border-left: 1rem solid $listItemBackground;
+      border-bottom: 0.1rem solid white;
+      color: $linkColor;
+      display: block;
+      line-height: 2em;
+      padding: 0.5rem 1.5rem 0.5rem 1rem;
+
+      &:hover {
+        border-left: 1rem solid $listItemHoverIndicator;
+        color: $linkHoverColor;
+      }
+
+      &.active {
+        border-left: 1rem solid $listItemActiveIndicator;
+      }
+    }
+  }
+
+  @include breakpoint(600px) {
+    .toggle-nav__header {
+      font-size: 2rem;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  @include breakpoint(1100px) {
+    .toggle-nav__header {
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      line-height: 6rem;
+    }
+  }
+}
+
+.toggle-nav {
+  @include toggle-nav;
+}

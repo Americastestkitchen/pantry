@@ -1,0 +1,13 @@
+@include breakpoint($bp-medium) {
+  .global-header-account__link {
+    color: $black;
+  }
+}
+
+@include breakpoint($bp-medium-to-large) {
+  .global-header-account {
+    display: inline-block;
+    padding-right: 2rem;
+    vertical-align: top;
+  }
+}

@@ -1,0 +1,115 @@
+%button {
+  background-color: $pepper;
+  border: 1px solid $warm-gray;
+  color: $licorice;
+  display: inline-block;
+  font-family: $montserratFamily;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  overflow: hidden;
+  padding: 0.5rem 2rem;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: lighten($warm-gray, 5%);
+    cursor: pointer;
+  }
+
+  &.apple {
+    background-color: $apple;
+    border-color: $apple;
+    color: $white;
+    &:hover {
+      background-color: lighten($apple, 5%);
+    }
+  }
+
+  &.white {
+    background-color: $white;
+    border: 0.2rem solid $white;
+    color: $black;
+    &:hover {
+      border-color: $rust;
+      color: $rust;
+    }
+  }
+
+  &.lipstick {
+    background-color: $lipstick;
+    border-color: $lipstick;
+    color: $white;
+    &:hover {
+      background-color: darken($lipstick, 5%);
+    }
+  }
+
+  &.tomato {
+    background-color: $tomato;
+    border-color: $tomato;
+    color: $white;
+    &:hover {
+      background-color: $rust;
+      border-color: $rust;
+    }
+  }
+
+  &.mint {
+    background-color: $mint;
+    color: $white;
+    &:hover {
+      background-color: darken($mint, 5%);
+    }
+  }
+
+  &.red-border {
+    @include button-bordered;
+  }
+
+  &.white-border {
+    @include button-bordered($white, $white, $licorice, $white);
+    padding: 0.5rem 2.5rem;
+  }
+
+  &.licorice {
+    background-color: $licorice;
+    border: 0.1rem solid $white;
+    &:hover {
+      background-color: $white;
+      color: $licorice;
+    }
+  }
+}
+
+input[type="submit"],
+.button.disabled,
+button {
+  @extend %button;
+  &[disabled],
+  &[readonly],
+  &.disabled,
+  fieldset[disabled] & {
+    background-color: $warm-gray;
+    border-color: $warm-gray;
+    cursor: default;
+    opacity: 1;
+    pointer-events: none;
+  }
+  &:hover {
+    background-color: $warm-gray;
+  }
+  &:focus {
+    border-color: $warm-gray;
+    outline: 0;
+  }
+}
+
+.button {
+  @extend %button;
+
+  @include breakpoint($bp-medium) {
+    &.red-border {
+      padding: 0.5rem 4rem;
+    }
+  }
+}

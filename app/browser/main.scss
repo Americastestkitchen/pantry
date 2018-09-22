@@ -1,32 +1,16 @@
 @import "~breakpoint-sass/stylesheets/breakpoint";
-@import "~normalize.css/normalize.css";
-@import "app/App.scss";
+@import "~normalize.css/normalize";
+@import "app/styles/shared/shared";
 
-$small: (320px 767px);
-$medium: (768px 1099px);
-$large: 1100px;
+/* shared component styles */
+@import "../../src/GlobalAccountHeader/GlobalAccountHeader";
+@import "../../src/GlobalAccountHeader/GlobalAccountHeader_large";
+@import "../../src/GlobalAccountHeader/GlobalAccountHeader_medium";
 
-html,
-body {
-  height: 100%;
-}
+@import "../../src/GlobalBrandsHeader/GlobalBrandsHeader";
+@import "../../src/GlobalBrandsHeader/GlobalBrandsHeader_large";
 
-body {
-  color: #333;
-  font-family: "Segoe UI", "Lucida Grande", "Ubuntu", "sans-serif";
-  font-size: 16px;
-  line-height: 1.5;
-}
+@import "../../src/ToggleNav/ToggleNav";
+@import "../../src/ToggleNav/ToggleNav_large";
 
-.content {
-  margin-bottom: 3em;
-
-  header {
-    border-bottom: 1px solid darkgray;
-  }
-}
-
-.component-summary {
-  border: 1px solid lightgray;
-  padding: 1em 2em;
-}
+/* routable component styles */

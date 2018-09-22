@@ -1,0 +1,54 @@
+@mixin flex-full {
+  flex-basis: calc(100%);
+  max-width: calc(100%);
+}
+
+@mixin flex-one-half($margin: 1rem) {
+  flex-basis: calc(50%);
+  max-width: calc(50% - #{$margin});
+}
+
+@mixin flex-one-third-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flex-one-third($margin: 0.66rem) {
+  flex-basis: calc(33.33333%);
+  max-width: calc(33.33333% - #{$margin});
+}
+
+@mixin flex-two-thirds($margin: 0.66rem) {
+  flex-basis: calc(66.66666%);
+  max-width: calc(66.66666% - #{$margin});
+}
+
+@mixin flex-one-fourth($margin: 0.75rem) {
+  flex-basis: calc(25%);
+  max-width: calc(25% - #{$margin});
+}
+
+@mixin flex-three-fourths($margin: 0.75rem) {
+  flex-basis: calc(75%);
+  max-width: calc(75% - #{$margin});
+}
+
+@mixin flex-one-fifth($margin: 0.2rem) {
+  flex-basis: calc(20%);
+  max-width: calc(20% - #{$margin});
+}
+
+@mixin flex-two-fifths($margin: 0.4rem) {
+  flex-basis: calc(40%);
+  max-width: calc(40% - #{$margin});
+}
+
+@mixin flex-three-fifths($margin: 0.6rem) {
+  flex-basis: calc(60%);
+  max-width: calc(60% - #{$margin});
+}
+
+@mixin flex-four-fifths($margin: 0.8rem) {
+  flex-basis: calc(80%);
+  max-width: calc(80% - #{$margin});
+}

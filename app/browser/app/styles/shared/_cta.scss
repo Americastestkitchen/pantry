@@ -1,0 +1,58 @@
+.content-cta {
+  background-color: transparent;
+  font-family: $montserratSemiBoldFamily;
+  font-size: $font-size-medium;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  text-align: center;
+
+  .content {
+    display: inline;
+    padding: 0;
+  }
+
+  .content-cta-strong {
+    color: $tomato;
+  }
+
+}
+
+.content-cta.with-url {
+  font-family: $montserratFamily;
+  display: block;
+
+  .content-cta-strong {
+    color: $black;
+  }
+
+  .content-wrapper {
+    @include flex-full;
+    font-size: 1.8rem;
+    margin: 0.5rem;
+    text-align: center;
+  }
+}
+
+@include breakpoint($bp-medium) {
+  .content-cta {
+    font-size: $font-size-medium-large;
+    padding: 1rem 10%;
+  }
+  .content-cta.with-url {
+    font-family: $montserratFamily;
+    display: flex;
+
+    .content-cta-strong {
+      color: $black;
+    }
+    .content-cta-link {
+      @include flex-one-fourth;
+    }
+    .content-wrapper {
+      @include flex-three-fourths;
+      font-size: 1.8rem;
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+  }
+}

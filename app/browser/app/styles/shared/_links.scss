@@ -1,0 +1,27 @@
+a {
+  &.active {
+    color: $licorice;
+  }
+}
+
+a.warm-gray {
+  color: $warm-gray;
+
+  &:hover {
+    color: darken($warm-gray, 15%);
+  }
+}
+
+.warm-gray-links {
+  a {
+    color: $warm-gray;
+
+    &.active {
+      color: $licorice;
+    }
+
+    &:hover {
+      color: darken($warm-gray, 15%);
+    }
+  }
+}
